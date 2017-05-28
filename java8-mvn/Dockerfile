@@ -1,4 +1,4 @@
-#Should run as: docker run imagename mvn spring-boot:run
+#Should run as: docker run -v directoryOnHost:directoryOnContainer imagename mvn spring-boot:run
 
 FROM ubuntu
 
@@ -26,14 +26,10 @@ EXPOSE 8080
 # Define environment variable
 ENV JAVA_HOME /usr/local/java/jdk1.8.0_131
 
-# install git and maven the easy way 
+# install maven the easy way 
 # (TODO install from tar later...)
-RUN apt-get update && apt-get install -y git && apt-get install -y maven 
+RUN apt-get update && apt-get install -y maven 
 
-# checkout src code and run app:
-RUN git clone https://github.com/ruben056/websocket-stomp-dynamic-messaging.git
-WORKDIR /app/websocket-stomp-dynamic-messaging
-#RUN mvn spring-boot:run
 
 # Run app.py when the container launches
 CMD ["/bin/bash"]
